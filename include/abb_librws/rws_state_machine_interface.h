@@ -37,7 +37,7 @@
 #ifndef RWS_STATE_MACHINE_INTERFACE_H
 #define RWS_STATE_MACHINE_INTERFACE_H
 
-#include <abb_librws/v1_0/rws_interface.h>
+#include <abb_librws/v2_0/rws_interface.h>
 
 namespace abb
 {
@@ -55,7 +55,7 @@ namespace rws
  *       - If the RobotWare option Externally Guided Motion (EGM) is present.
  *       - If the SmartGripper (SG) product is present.
  */
-class RWSStateMachineInterface : public v1_0::RWSInterface
+class RWSStateMachineInterface : public v2_0::RWSInterface
 {
 private:
   /**
@@ -712,7 +712,7 @@ public:
    *
    * \param client RWS client.
    */
-  RWSStateMachineInterface(v1_0::RWSClient& client)
+  RWSStateMachineInterface(v2_0::RWSClient& client)
   :
   RWSInterface {client},
   services_(this)
