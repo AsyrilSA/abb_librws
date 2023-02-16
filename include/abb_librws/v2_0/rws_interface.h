@@ -342,6 +342,48 @@ public:
   ///
   void setGroupSignal(std::string const& signal_name, std::uint32_t value);
 
+    /**
+   * \brief A method for setting the data of a RAPID symbol via raw text format.
+   *
+   * Examples of RAPID symbols in raw text format:
+   * - num: "1" or "-2.5".
+   * - bool: "TRUE" or "FALSE".
+   * - pos: "[1, -2, 3.3]".
+   * - jointtarget: "[[1, -2, 3.3, -4.4, 5, 6], [9E9, 9E9, 9E9, 9E9, 9E9, 9E9]]"
+   *
+   * Notes:
+   * - The absence of square brackets implies the symbol is of atomic data type.
+   * - Record data types (composed of subcomponents) are always enclosed in square brackets.
+   * - The value '9E9', in the jointtarget record, mean that the joint is not in use.
+   *
+   * Please see the "Technical reference manual - RAPID overview"
+   * (document ID: 3HAC050947-001, revision: K) for more information
+   * about basic RAPID data types and programming.
+   *
+   * \param task name of the RAPID task containing the RAPID symbol.
+   * \param module name of the RAPID module containing the RAPID symbol.
+   * \param name the name of the RAPID symbol.
+   * \param data containing the RAPID symbol's new data.
+   *
+   * \throw \a std::runtime_error if something goes wrong.
+   */
+  void setRAPIDSymbolData(const std::string& task,
+                          const std::string& module,
+                          const std::string& name,
+                          const std::string& data);
+
+
+  /**
+   * \brief A method for setting the data of a RAPID symbol.
+   *
+   * \param resource identifying the RAPID symbol.
+   * \param data containing the RAPID symbol's new data.
+   *
+   * \throw \a std::runtime_error if something goes wrong.
+   */
+  void setRAPIDSymbolData(RAPIDResource const& resource,
+                          const RAPIDSymbolDataAbstract& data);
+
   /**
    * \brief A method for retrieving a file from the robot controller.
    *

@@ -35,6 +35,7 @@
  */
 #include <abb_librws/v2_0/rws_interface.h>
 #include <abb_librws/v2_0/rw/rapid.h>
+#include <abb_librws/v2_0/rw/panel.h>
 #include <abb_librws/v2_0/rws.h>
 #include <abb_librws/rws_rapid.h>
 #include <abb_librws/parsing.h>
@@ -726,6 +727,20 @@ RobTarget RWSInterface::getMechanicalUnitRobTarget(const std::string& mechunit,
   return robtarget;
 }
 
+void RWSInterface::setRAPIDSymbolData(const std::string& task,
+                                      const std::string& module,
+                                      const std::string& name,
+                                      const std::string& data)
+{
+  rw::rapid::setRAPIDSymbolData(rws_client_, RAPIDResource(task, module, name), data);
+}
+
+
+void RWSInterface::setRAPIDSymbolData(RAPIDResource const& resource, const RAPIDSymbolDataAbstract& data)
+{
+  rw::rapid::setRAPIDSymbolData(rws_client_, resource, data);
+}
+
 std::vector<rw::RAPIDModuleInfo> RWSInterface::getRAPIDModulesInfo(const std::string& task)
 {
   return rw::rapid::getRAPIDModulesInfo(rws_client_, task);
@@ -761,9 +776,26 @@ SystemInfo RWSInterface::getSystemInfo()
   return result;
 }
 
+bool RWSInterface::isAutoMode()
+{
+  return rw::panel::getOperationMode(rws_client_) == rw::OperationMode::automatic;
+}
+
 void RWSInterface::setIOSignal(const std::string& iosignal, const std::string& value)
 {
   rws_client_.setIOSignal(iosignal, value);
+}
+
+std::string RWSInterface::getRAPIDSymbolData(const std::string& task,
+                                             const std::string& module,
+                                             const std::string& name)
+{
+  return rw::rapid::getRAPIDSymbolData(rws_client_, RAPIDResource(task, module, name));
+}
+
+void RWSInterface::getRAPIDSymbolData(RAPIDResource const& resource, RAPIDSymbolDataAbstract& data)
+{
+  rw::rapid::getRAPIDSymbolData(rws_client_, resource, data);
 }
 
 std::string RWSInterface::getFile(const FileResource& resource)
