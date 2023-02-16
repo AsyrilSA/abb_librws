@@ -230,6 +230,58 @@ public:
                                   Coordinate coordinate = Coordinate::ACTIVE,
                                   const std::string& tool = "",
                                   const std::string& wobj = "");
+  /**
+   * \brief A method for retrieving the data of a RAPID symbol in raw text format.
+   *
+   * See the corresponding "setRAPIDSymbolData(...)" method for examples of RAPID symbols in raw text format.
+   *
+   * \param task name of the RAPID task containing the RAPID symbol.
+   * \param module name of the RAPID module containing the RAPID symbol.
+   * \param name name of the RAPID symbol.
+   *
+   * \return std::string containing the data. Empty if not found.
+   *
+   * \throw \a std::runtime_error if something goes wrong.
+   */
+  std::string getRAPIDSymbolData(const std::string& task, const std::string& module, const std::string& name);
+
+  /**
+   * \brief Retrieves the data of a RAPID symbol (parsed into a struct representing the RAPID data).
+   *
+   * \param resource specifies the RAPID task, module and symbol name.
+   * \param data for storing the retrieved RAPID symbol data.
+   *
+   * \throw \a std::runtime_error if something goes wrong.
+   */
+  void getRAPIDSymbolData(RAPIDResource const& resource, RAPIDSymbolDataAbstract& data);
+
+  /**
+   * \brief A method for retrieving information about the RAPID modules of a RAPID task defined in the robot controller.
+   *
+   * \return \a std::vector<RAPIDModuleInfo> containing the RAPID modules information.
+   *
+   * \throw \a std::runtime_error if something goes wrong.
+   */
+  std::vector<rw::RAPIDModuleInfo> getRAPIDModulesInfo(const std::string& task);
+
+  /**
+   * \brief A method for retrieving information about the RAPID tasks defined in the robot controller.
+   *
+   * \return \a std::vector<RAPIDTaskInfo> containing the RAPID tasks information.
+   *
+   * \throw \a std::runtime_error if something goes wrong.
+   */
+  std::vector<rw::RAPIDTaskInfo> getRAPIDTasks();
+
+  /**
+   * \brief A method for retrieving the robot controller's speed ratio for RAPID motions (e.g. MoveJ and MoveL).
+   *
+   * \return unsigned int with the speed ratio in the range [0, 100] (ie: inclusive).
+   *
+   * \throw \a std::runtime_error if failed to get or parse the speed ratio.
+   */
+  unsigned int getSpeedRatio();
+
 
   /**
    * \brief A method for retrieving some system information from the robot controller.
@@ -239,6 +291,33 @@ public:
    * \throw \a std::runtime_error if something goes wrong.
    */
   SystemInfo getSystemInfo();
+
+  /**
+   * \brief A method for checking if the robot controller mode is in auto mode.
+   *
+   * \return if the mode is auto or not.
+   *
+   * \throw \a std::runtime_error if something goes wrong.
+   */
+  bool isAutoMode();
+
+  /**
+   * \brief A method for checking if the motors are on.
+   *
+   * \return if the motors are on or not.
+   *
+   * \throw \a std::runtime_error if something goes wrong.
+   */
+  bool isMotorsOn();
+
+  /**
+   * \brief A method for checking if RAPID is running.
+   *
+   * \return if RAPID is running or not.
+   *
+   * \throw \a std::runtime_error if something goes wrong.
+   */
+  bool isRAPIDRunning();
 
   /// @brief Set value of a digital signal
   ///

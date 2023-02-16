@@ -726,6 +726,16 @@ RobTarget RWSInterface::getMechanicalUnitRobTarget(const std::string& mechunit,
   return robtarget;
 }
 
+std::vector<rw::RAPIDModuleInfo> RWSInterface::getRAPIDModulesInfo(const std::string& task)
+{
+  return rw::rapid::getRAPIDModulesInfo(rws_client_, task);
+}
+
+std::vector<rw::RAPIDTaskInfo> RWSInterface::getRAPIDTasks()
+{
+  return rw::rapid::getRAPIDTasks(rws_client_);
+}
+
 SystemInfo RWSInterface::getSystemInfo()
 {
   SystemInfo result;
