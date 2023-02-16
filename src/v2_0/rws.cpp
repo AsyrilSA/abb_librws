@@ -15,7 +15,7 @@ namespace abb :: rws :: v2_0
   const std::string Identifiers::ACTIVE                         = "active";
   const std::string Identifiers::ARM                            = "arm";
   const std::string Identifiers::CFG_DT_INSTANCE_LI             = "cfg-dt-instance-li";
-  const std::string Identifiers::CFG_IA_T_LI                    = "cfg-ia-t-li";
+  const std::string Identifiers::CFG_IA_T_LI                    = "cfg-ia-t";
   const std::string Identifiers::CTRL_TYPE                      = "ctrl-type";
   const std::string Identifiers::CTRLEXECSTATE                  = "ctrlexecstate";
   const std::string Identifiers::CTRLSTATE                      = "ctrlstate";
@@ -41,8 +41,8 @@ namespace abb :: rws :: v2_0
   const std::string Identifiers::SINGLE                         = "single";
   const std::string Identifiers::STATE                          = "state";
   const std::string Identifiers::SYS                            = "sys";
-  const std::string Identifiers::SYS_OPTION_LI                  = "sys-option-li";
-  const std::string Identifiers::SYS_SYSTEM_LI                  = "sys-system-li";
+  const std::string Identifiers::SYS_OPTION_LI                  = "sys-options-li";
+  const std::string Identifiers::SYS_SYSTEM_LI                  = "sys-system";
   const std::string Identifiers::TITLE                          = "title";
   const std::string Identifiers::TYPE                           = "type";
   const std::string Identifiers::VALUE                          = "value";
